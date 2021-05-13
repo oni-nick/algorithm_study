@@ -1,0 +1,28 @@
+def solution(name):
+    cnt, a_cnt, a_max = 0, 0, 0 
+    idx, a_startIdx, wander_cnt = 0, 0, 0
+    
+    for i, n in enumerate(name):
+        if n == 'A': 
+            a_cnt += 1
+            if a_cnt > a_max:
+                a_max = a_cnt
+                idx = i
+        else:
+            cnt += min(ord(n)-ord('A'), ord('Z')-ord(n)+1)
+            a_cnt = 0
+    
+    a_startIdx = idx-a_max + 1
+    
+    
+    if a_startIdx == 0 or idx == len(name) -1:
+        cnt += len(name)-1-a_max
+    else:
+        left = len(name)-idx-1 
+        if a_startIdx <= left:
+            wander_cnt = (a_startIdx-1)*2 + left
+        else:
+            wander_cnt = (a_startIdx-1) + left*2
+        cnt += min(wander_cnt, len(name)-1) 
+
+    return cnt
