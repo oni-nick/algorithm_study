@@ -26,3 +26,4 @@ def solution(name):
         cnt += min(wander_cnt, len(name)-1) 
 
     return cnt
+ 
